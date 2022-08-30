@@ -32,9 +32,9 @@ const fileFilter = (req, file, callback) => {
 };
 
 let upload = multer({
-    storage: storage,
-    fileFilter: fileFilter,
-    fileSize: 1048576, // 10MB
+  storage: storage,
+  fileFilter: fileFilter,
+  fileSize: 1048576, // 10MB
 });
 
-module.exports = upload.single("productImage")
+module.exports = upload.single("productImage");
