@@ -5,7 +5,7 @@ const category = mongoose.model(
   mongoose.Schema({
     categoryName: {
       type: String,
-      requrie: true,
+      required: true,
       unique: true,
     },
     categoryDescription: {

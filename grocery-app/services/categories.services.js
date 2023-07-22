@@ -30,9 +30,9 @@ async function getCategories(params, callback) {
   let perPage = Math.abs(params.pageSize) || MONGO_DB_CONFIG.PAGE_SIZE;
   let page = (Math.abs(params.page) || 1) - 1;
 
-  // search and pagination with perpage configuration
+  // search and pagination with perPage configuration
   category
-    .find(condition, "categoryName categoryImage")
+    .find(condition)
     .limit(perPage)
     .skip(perPage * page)
     .then((response) => {
@@ -59,11 +59,39 @@ async function getCategoryById(params, callback) {
 }
 
 // Update Category
+async function updateCategory(params, callback) {
+  const categoryId = params.categoryId;
+
+  category
+    .findByIdAndUpdate(categoryId, params, { useFindAndModify: false })
+    .then((response) => {
+      if (!response) return callback("Not Found Category with ID" + categoryId);
+      return callback(null, response);
+    })
+    .catch((error) => {
+      return callback(error);
+    });
+}
 
 // Delete Category
+async function deleteCategoryById(params, callback) {
+  const categoryId = params.categoryId;
+
+  category
+    .findByIdAndRemove(categoryId)
+    .then((response) => {
+      if (!response) return callback("Not Found Category with ID" + categoryId);
+      return callback(null, "Category removed successfully!");
+    })
+    .catch((error) => {
+      return callback(error);
+    });
+}
 
 module.exports = {
   createCategory,
   getCategories,
   getCategoryById,
+  updateCategory,
+  deleteCategoryById,
 };

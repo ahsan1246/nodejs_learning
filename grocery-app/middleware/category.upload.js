@@ -13,14 +13,14 @@ const categoryStorage = multer.diskStorage({
 
 // filter for our file uploading
 const categoryFileFilter = (req, file, callback) => {
-  // file extensiion filteration
+  // file extension filtration
   const acceptableExt = [".png", ".jpg", ".jpeg"];
 
   if (!acceptableExt.includes(Path.extname(file.originalname))) {
     return callback(new Error("only .png, .jpg, .jpeg allowed."));
   }
 
-  // file size filteration
+  // file size filtration
   const fileSize = parseInt(req.headers["content-length"]);
 
   // accept in bites only
