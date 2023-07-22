@@ -1,5 +1,9 @@
+const envFile = require("dotenv");
+
+envFile.config();
+
 const MONGO_DB_CONFIG = {
-    DB: "mongodb://localhost:27017/grocery-app",
+    DB: process.env.dbUrl,
     PAGE_SIZE: 10,
 }
 

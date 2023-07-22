@@ -50,7 +50,7 @@ async function getCategoryById(params, callback) {
   category
     .findById(categoryId)
     .then((response) => {
-      if (!response) callback("Not Found Category with ID" + categoryId);
+      if (!response) return callback("Not Found Category with ID" + categoryId);
       return callback(null, response);
     })
     .catch((error) => {
@@ -61,3 +61,9 @@ async function getCategoryById(params, callback) {
 // Update Category
 
 // Delete Category
+
+module.exports = {
+  createCategory,
+  getCategories,
+  getCategoryById,
+};

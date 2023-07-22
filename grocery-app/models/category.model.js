@@ -8,7 +8,7 @@ const category = mongoose.model(
       requrie: true,
       unique: true,
     },
-    categoryDesctiption: {
+    categoryDescription: {
       type: String,
       required: false,
     },

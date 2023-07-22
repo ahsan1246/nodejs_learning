@@ -18,7 +18,7 @@ function errorHandler(err, req, res, next) {
 
   // other error handler add here if need
 
-  return res.status(500).json({ message: error.message });
+  return res.status(500).json({ message: err.message });
 }
 
 module.exports = {
