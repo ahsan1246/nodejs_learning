@@ -24,7 +24,7 @@ const categoryFileFilter = (req, file, callback) => {
   const fileSize = parseInt(req.headers["content-length"]);
 
   // accept in bites only
-  if (fileSize > 1048576) {
+  if (fileSize > 10485760) {
     return callback(new Error("File size is big."));
   }
 
@@ -35,7 +35,7 @@ const categoryFileFilter = (req, file, callback) => {
 let upload = multer({
   storage: categoryStorage,
   fileFilter: categoryFileFilter,
-  fileSize: 1048576, // 10MB
+  fileSize: 10485760, // 10MB
 });
 
 module.exports = upload.single("categoryImage");
