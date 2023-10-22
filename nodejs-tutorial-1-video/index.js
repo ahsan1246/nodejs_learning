@@ -17,6 +17,10 @@ app.get('/', (_, resp) => {
 app.get('/about', (_, resp) => {
         resp.sendFile(`${publicPath}/about.html`);
 });
+// to handle unavailable route
+app.get('*', (_, resp) => {
+        resp.sendFile(`${publicPath}/404.html`);
+});
 
 app.listen(5000); // define port to access server
 
