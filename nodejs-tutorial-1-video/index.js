@@ -20,12 +20,19 @@ app.get('/about', (_, resp) => {
 
 // ----- access dynamic pages using ejs
 app.set('view engine', 'ejs');
+// profile page route
 app.get('/profile', (_, resp) => {
         const user = {
                 name: 'ahsan',
-                email: 'ahsan@test.com'
+                email: 'ahsan@test.com',
+                skills: ['Flutter', 'Dart', 'JS', 'Java', 'NodeJS'],
         };
         resp.render('profile', {user});
+});
+
+// login page route
+app.get('/login', (_, resp) => {
+        resp.render('login');
 });
 
 // to handle unavailable route
