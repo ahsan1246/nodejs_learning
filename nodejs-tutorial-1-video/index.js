@@ -35,6 +35,21 @@ app.get('/login', (_, resp) => {
         resp.render('login');
 });
 
+// ----- Middleware
+const reqAgeFilter = (req, resp, next) => {
+        if (!req.query.age) {
+                resp.send('Age information in not available!');
+        } else if (req.query.age < 18) {
+                resp.send('You are not allowed to access this page.');
+        } else {
+                next();
+        }
+}
+
+app.use(reqAgeFilter);
+
+// app.get('/check_age', reqAgeFilter);
+
 // to handle unavailable route
 app.get('*', (_, resp) => {
         resp.sendFile(`${publicPath}/404.html`);
