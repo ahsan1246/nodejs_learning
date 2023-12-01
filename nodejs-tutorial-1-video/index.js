@@ -4,8 +4,6 @@ const path = require("path");
 
 const app = express(); // create an instance of express
 
-const route = express.Router(); // store reference of router module for apply middleware on route group
-
 const publicPath = path.join(__dirname, "public"); // to get public folder path and store in publicPath variable
 
 // ----- To load static file but we need to pass file name with file extension to access file content.
@@ -43,12 +41,15 @@ app.get("/login", (_, resp) => {
 
 // app.get('/check_age', reqAgeFilter);
 
-// ----- To define the middleware for use in route
-route.use(reqAgeFilter);
+// ----- start of apply middleware on single / multiple routes
+const route = express.Router(); // store reference of router module for apply middleware on route group
+
+route.use(reqAgeFilter); // To define the middleware for use in route
 
 route.get("/user", (_, resp) => {
   resp.send("Welcome to user page!");
 });
+// ----- End of apply middleware on single / multiple routes
 
 app.use("/", route); // this statement tells the app to use/consider method with route object is also a route but with middleware config
 
