@@ -1,13 +1,4 @@
-import { MongoClient } from "mongodb";
-const mongodbUrl = "mongodb://localhost:27017";
-const mongodbName = "ecommerce-app";
-const mongoClient = new MongoClient(mongodbUrl);
-
-async function dbConnection() {
-  let result = await mongoClient.connect();
-  let db = result.db(mongodbName);
-  return db.collection("products");
-}
+const dbConnection = require("./mongodb.js");
 
 async function getData() {
   let collection = await dbConnection();
